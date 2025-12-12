@@ -11,8 +11,8 @@ app.get('/', (req, res) => {
     res.status(200).json({
         intro: "Welcome to the unofficial eporner provider: check the provider website @ https://www.eporner.com/ ",
         routes: {
-            categoty_list: "/api/cats",
-            video_details_and_sources: "/api/full/?id=:epornerid",
+            categoty_list: "/cats",
+            video_details_and_sources: "/details/:epornerid",
             search: "/search/:query"
         },
         author: "This api is developed and created by Inside4ndroid"
@@ -32,7 +32,7 @@ app.get('/details/:id', async (req, res) => {
             return: "Oops reached rate limit of this api"
         });
     } else {
-        getDetails.json.details.sources = getSources.sources;
+        getDetails.json.sources = getSources.sources;
         res.status(200).json(getDetails);
     }
 });
