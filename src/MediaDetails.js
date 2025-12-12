@@ -13,11 +13,17 @@ export async function getVideoDetails(Id, thumbsize) {
         const response = await fetch(url);
         const data = await response.json();
 
-        delete data.url;
-        delete data.embed;
-
         const json = {
-            details: data
+            adult: true,
+            backdrop_path: data.default_thumb.src,
+            genres: data.keywords,
+            id: data.id,
+            title: data.title,
+            poster_path: data.default_thumb.src,
+            release_date: data.added,
+            runtime: data.length_min,
+            vote_average: data.rate,
+            vote_count: data.views  
         };
         return { json };
     } catch (err) {
