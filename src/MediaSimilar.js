@@ -2,7 +2,6 @@ import { detailsBase } from "./constants.js";
 
 export async function getSimilarVideo(epid) {
     try {
-    	const page = pageNo || 1;
         const url = 'https://adultempire.lustycodes.workers.dev/?url=https://www.eporner.com/' + erid + '/';
 
          const HEADERS = {
@@ -46,4 +45,5 @@ export async function getSimilarVideo(epid) {
         console.error(err);
         return null;
     }
+
 }
