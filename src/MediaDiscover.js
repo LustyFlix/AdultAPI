@@ -11,7 +11,7 @@ export async function getVideoDiscover(with_genres, pageNo) {
 
          const response = await fetch(url, { headers: HEADERS });
          const html = await response.text();
-       
+         console.log(html);
 
         // Extract items
         const items = [];
@@ -45,4 +45,5 @@ export async function getVideoDiscover(with_genres, pageNo) {
         console.error(err);
         return null;
     }
+
 }
