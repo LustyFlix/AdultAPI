@@ -5,7 +5,12 @@ export async function getVideoDiscover(with_genres, pageNo) {
     	const page = pageNo || 1;
         const url = 'https://www.eporner.com/cat/' + with_genres + '/' + page + '/';
 
-        const response = await fetch(url);
+        const response = await fetch(url, {
+        headers: {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            "Accept": "text/html,application/xhtml+xml"
+            }
+        });
         const html = await response.text();
         
         console.log(html);
