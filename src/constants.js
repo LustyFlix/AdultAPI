@@ -1,4 +1,6 @@
-export const detailsBase = 'https://www.eporner.com/api/v2/video/id/?id='
+export const baseURL = 'https://www.eporner.com/';
+export const detailsBase = 'https://www.eporner.com/api/v2/video/id/?id=';
+
 
 export const categories = [
     "4K Ultra HD",
