@@ -1,4 +1,5 @@
 import express from "express";
+import { getVideoDiscover } from "./src/MediaDiscover.js";
 import { getVideoDetails } from "./src/MediaDetails.js";
 import { port } from "./src/constants.js";
 import { getCategories } from "./src/Categories.js";
@@ -12,6 +13,7 @@ app.get('/', (req, res) => {
         intro: "Welcome to the unofficial eporner provider: check the provider website @ https://www.eporner.com/ ",
         routes: {
             categoty_list: "/cats",
+            video_discover: "/discover/movie",
             video_details_and_sources: "/details/:epornerid",
             search: "/search/:query"
         },
@@ -35,6 +37,21 @@ app.get('/details/:id', async (req, res) => {
         getDetails.json.sources = getSources.sources;
         res.status(200).json(getDetails);
     }
+});
+
+app.get("/discover/movie", async (req, res) => {
+    const page = Number(req.query.page) || 1;
+
+    const getDiscover = await getVideoDiscover(page);
+
+    if (!getDiscover) {
+        return res.status(429).json({
+            status: 429,
+            message: "Oops, reached rate limit of this API"
+        });
+    }
+
+    res.status(200).json(getDiscover);
 });
 
 app.get('/search/:query', async (req, res) => {
