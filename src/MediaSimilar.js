@@ -10,7 +10,7 @@ export async function getSimilarVideo(epid) {
 
          const response = await fetch(url, { headers: HEADERS });
          const html = await response.text();
-       
+         console.log(html);
 
         // Extract items
         const items = [];
@@ -47,3 +47,4 @@ export async function getSimilarVideo(epid) {
     }
 
 }
+
