@@ -41,8 +41,9 @@ app.get('/details/:id', async (req, res) => {
 
 app.get("/discover/movie", async (req, res) => {
     const page = Number(req.query.page) || 1;
+    const with_genres = req.params.with_genres;
 
-    const getDiscover = await getVideoDiscover(page);
+    const getDiscover = await getVideoDiscover(with_genres, page);
 
     if (!getDiscover) {
         return res.status(429).json({
