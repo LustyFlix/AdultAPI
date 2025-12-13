@@ -1,9 +1,9 @@
 import { detailsBase } from "./constants.js";
 
-export async function getVideoDiscover(catName, pageNo) {
+export async function getVideoDiscover(with_genres, page) {
     try {
-    	const page = pageNo || 1;
-        const url = 'https://www.eporner.com/cat/' + catName + '/' + pageNo + '/';
+    	const page = page || 1;
+        const url = 'https://www.eporner.com/cat/' + with_genres + '/' + page + '/';
 
         const response = await fetch(url);
         const html = await response.text();
