@@ -2,7 +2,7 @@ import { detailsBase } from "./constants.js";
 
 export async function getSimilarVideo(epid) {
     try {
-        const url = 'https://adultempire.lustycodes.workers.dev/?url=https://www.eporner.com/' + erid + '/';
+        const url = 'https://adultempire.lustycodes.workers.dev/?url=https://www.eporner.com/' + epid + '/';
 
          const HEADERS = {
          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36"
@@ -47,4 +47,5 @@ export async function getSimilarVideo(epid) {
     }
 
 }
+
 
