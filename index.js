@@ -34,7 +34,7 @@ app.get('/details/:id', async (req, res) => {
             return: "Oops reached rate limit of this api"
         });
     } else {
-        getDetails.json.sources = getSources.sources;
+        getDetails.sources = getSources.sources;
         res.status(200).json(getDetails);
     }
 });
