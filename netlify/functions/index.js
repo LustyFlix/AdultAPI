@@ -2,6 +2,7 @@ import express from "express";
 import serverless from "serverless-http";
 import { getVideoDiscover } from "../../src/MediaDiscover.js";
 import { getVideoDetails } from "../../src/MediaDetails.js";
+import { getSimilarVideo } from "../../src/MediaSimilar.js";
 import { port } from "../../src/constants.js";
 import { getCategories } from "../../src/Categories.js";
 import { getVideoSources } from "../../src/Resolver.js";
@@ -26,7 +27,23 @@ app.get("/", (req, res) => {
   });
 });
 
-app.get("/details/:id", async (req, res) => {
+app.get('/movie/:id/similar', async (req, res) => {
+    const id = req.params.id || null;
+    const thumbsize = 'medium';
+
+    const getSimilar = await getSimilarVideo(id);
+
+    if (getSimilar === null) {
+        res.status(404).send({
+            status: 404,
+            return: "Oops reached rate limit of this api"
+        });
+    } else {
+        res.status(200).json(getSimilar);
+    }
+});
+
+app.get("/movie/:id", async (req, res) => {
   const id = req.params.id || null;
   const thumbsize = "medium";
 
