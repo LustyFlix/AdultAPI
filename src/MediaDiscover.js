@@ -11,11 +11,11 @@ export async function getVideoDiscover(with_genres, pageNo) {
 
          const response = await fetch(url, { headers: HEADERS });
          const html = await response.text();
-         console.log(html);
+       
 
         // Extract items
         const items = [];
-        const itemRegex = /<div class="mbcontent">([\s\S]*?)<\/div>/g;
+        const itemRegex = /<div class="mbcontent">([\s\S]*?)<\/span><\/p><\/div><\/div>/g;
 
         for (const block of html.matchAll(itemRegex)) {
             const content = block[1];
@@ -23,8 +23,9 @@ export async function getVideoDiscover(with_genres, pageNo) {
             items.push({
                 id: content.match(/video-(.*?)\//)?.[1] || null,
                 title: content.match(/alt="(.*?)"/)?.[1] || null,
-                poster_path: content.match(/<img src="(.*?)"/)?.[1] || null,
-                vote_count: content.match(/<span class="mbvie" title="Views">(.*?)</)?.[1] || null
+                poster_path: content.match(/<img src="(.*?)"/)?.[1] || content.match(/data-src="(.*?)"/)?.[1],
+                backdrop_path: content.match(/<img src="(.*?)"/)?.[1] || content.match(/data-src="(.*?)"/)?.[1],
+                vote_count: content.match(/<span class="mbvie" title="Views">(.*?)<\/span>/)?.[1] || null
             });
         }
 
@@ -45,5 +46,4 @@ export async function getVideoDiscover(with_genres, pageNo) {
         console.error(err);
         return null;
     }
-
 }
