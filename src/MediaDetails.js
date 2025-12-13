@@ -25,7 +25,7 @@ export async function getVideoDetails(Id, thumbsize) {
             vote_average: data.rate,
             vote_count: data.views  
         };
-        return { json };
+        return json;
     } catch (err) {
         console.error(err);
         return null;
